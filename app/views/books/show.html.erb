@@ -1,0 +1,56 @@
+<!--本の詳細ページ-->
+<div class="container px-5 px-sm-0">
+  <div class="row">
+ 
+   <body>
+    <div class="col-md-3"> 
+     
+       <!--成功時・エラー時メッセージ-->
+        <%= render 'books/message', book: @book %>
+       
+       <!--ユーザーインフォ-->
+       <%= render 'books/info', user: @user %>
+       
+       <!--New book-->
+       <%= render 'books/new', book: @book_new %>
+   
+    </div>
+ 
+ <div class="col-md-8 offset-md-1"> 
+  <!--Book detailの部分　ここから--> 
+ <h2>Book detail</h2>
+   <table class="table">
+   <thead></thead>
+    <tbody>
+        <tr>
+          <th scope="col">
+           <!--ユーザーページに飛ばす画像と名前のところ両方とも-->
+           <p>
+            <%= link_to user_path(@user.id) do %>
+             <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
+            <% end %>
+           </p>
+           <!--ユーザーページに飛ばす画像と名前のところ両方とも-->
+           <p><%= link_to @user.name,user_path(@user.id) %></p>
+          </th>
+          <!--本の詳細画面に飛ばす-->
+          <th scope="col"><%= link_to @book.title,book_path(@book.id)%></th>
+          <th scope="col"><%= @book.body %></th>
+          
+           <% if @user.id == current_user.id %>
+           <th scope="col"><%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>
+           <th scope="col"><%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %></th>
+           <th></th>
+           <% end %>
+        </tr>
+      <!--</thead>-->
+      <!--</tbody>-->
+    </tbody>
+   </table> 
+ <!--Book detailの部分　ここまで-->
+ </div>
+ 
+ </body>
+ 
+ </div>
+</div>
