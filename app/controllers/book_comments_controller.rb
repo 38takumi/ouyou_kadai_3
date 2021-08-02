@@ -53,6 +53,6 @@ destroyボタンも欄上　　　確認無し
 
 ボタンは
 <% if @user.id == current_user.id %><% end %>
-でかこむ
+で囲む
     
     
