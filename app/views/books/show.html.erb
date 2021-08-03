@@ -67,7 +67,7 @@
           <!--<th scope="col"><%#= @book.body %></th>-->
           
           <!--この本に対して入力されたコメントを抽出することを繰り返す-->
-          <th scope="col"><% @book_comments each do|book_comment| %></th>
+          <th scope="col"><% @book.book_comments do|book_comment| %></th>
           
             <% if current_user.id == book_comments_id %>
             <!--<th scope="col"><%#= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>-->

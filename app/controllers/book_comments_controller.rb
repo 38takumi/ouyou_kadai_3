@@ -18,7 +18,7 @@ class BookCommentsController < ApplicationController
     @book_comments_destroy = Book_comments.find(book_comments_params)
     @book_comments_destroy.destroy
     # flash[:notice] = "Book was successfully destroyed."
-    render 'books/show'
+    redirect_to book_path(book_comments_destory.book)
   end
   
   def correct_book_comments
