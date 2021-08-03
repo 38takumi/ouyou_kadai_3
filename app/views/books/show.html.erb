@@ -37,11 +37,12 @@
           <th scope="col"><%= link_to @book.title,book_path(@book.id)%></th>
           <th scope="col"><%= @book.body %></th>
           
-           <% if @user.id == current_user.id %>
-           <th scope="col"><%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>
-           <th scope="col"><%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %></th>
-           <th></th>
-           <% end %>
+          <% if @user.id == current_user.id %>
+          <th scope="col"><%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>
+          <th scope="col"><%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %></th>
+          <% end %>
+          <th scope="col"><% "#{@book.book_comments.count} コメント" %></th>
+           
         </tr>
       <!--</thead>-->
       <!--</tbody>-->
