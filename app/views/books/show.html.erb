@@ -66,12 +66,16 @@
           <!--<th scope="col"><%#= link_to @book.title,book_path(@book.id)%></th>-->
           <!--<th scope="col"><%#= @book.body %></th>-->
           
-          <th scope="col">この本に対して入力されたコメントを抽出することを繰り返す<% @book_comments each do|book_comment| %></th>
+          <!--この本に対して入力されたコメントを抽出することを繰り返す-->
+          <th scope="col"><% @book_comments each do|book_comment| %></th>
           
-           <% if current_user.id == book_comments_id %>
-           <!--<th scope="col"><%#= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>-->
-           <th scope="col"><%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %></th>
-           <th></th>
+            <% if current_user.id == book_comments_id %>
+            <!--<th scope="col"><%#= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>-->
+             <th scope="col">
+              <%= render 'book_comments/book_comments_destroy', book_comment_destroy: @book_comments_destroy %>
+             </th>
+             <th></th>
+            <% end %>
            <% end %>
         </tr>
         <!--読み込むeachの文のend-->
@@ -80,7 +84,7 @@
         <!--bookに対するコメント-->
         <tr>
          <th scope="col">
-          <%= render 'book_comments/book_comments', book_comment: @book_comments %>
+          <%= render 'book_comments/book_comments_new', book_comment: @book_comments_new %>
          </th> 
         </tr>
         
