@@ -41,6 +41,7 @@
           <th scope="col"><%= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>
           <th scope="col"><%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %></th>
           <% end %>
+          <th></th>
           <th scope="col"><% "#{@book.book_comments.count} コメント" %></th>
            
         </tr>

@@ -25,7 +25,8 @@ class BookCommentsController < ApplicationController
     @book_comments_destroy = Book_comments.find(params[:id])
     unless @book_comments_destroy.user.id == current_user.id
       # どこに飛ばせばいいかわからない
-      redirect_to books_path
+      # redirect_to books_path
+      redirect_to book_path(book_comments_destory.book)
     end
   end
     
@@ -35,24 +36,3 @@ class BookCommentsController < ApplicationController
   end  
     
 end
-
-
-
-
-
-
-
-
-# book詳細覧
-# コメント入力欄
-# 欄下に送信ボタン
-# コメントは欄上
-# destroyボタンも欄上　　　確認無し
-#     自分の画像の下に自分のユーザー名、リンク付き、画像の隣にコメントその隣にdestoroyボタン
-# 画面はコメント後も削除後もbook詳細
-
-# ボタンは
-# <% if @user.id == current_user.id %><% end %>
-# で囲む
-    
-    
