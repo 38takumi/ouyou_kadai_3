@@ -1,8 +1,10 @@
 <!--コメント欄、コメント入力欄ここから-->
     <tbody>
+     <!--この本に対して入力されたコメントを抽出することを繰り返す-->
+     <% book.book_comments.each do|book_comment| %>
         <tr>
-         <!--この本に対して入力されたコメントを抽出することを繰り返す-->
-          <th scope="col"><% book.book_comments.each do|book_comment| %></th>
+         
+          <th scope="col"></th>
           <!--読み込むeachの文-->
            <th scope="col">
             <!--ユーザーページに飛ばす画像と名前のところ両方とも-->
@@ -15,7 +17,9 @@
             <p><%= link_to book_comment.user.name,user_path(book_comment.user.id) %></p>
            </th>
              <!--コメント-->
-             <th scope="col"><%= book_comment.user_comment %></th>
+             <th scope="col">
+              <%= book_comment.user_comment %>
+             </th>
              
              <% if current_user == book_comment.user %>
               <th scope="col">

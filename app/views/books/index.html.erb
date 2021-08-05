@@ -38,8 +38,8 @@
                 <!--本の詳細画面に飛ばす-->
                 <td><%= link_to book.title,book_path(book.id) %></td>
                 <td><%= book.body %></td>
-                <th></th>
-                <td><% "#{@book.book_comments.count} コメント" %></td>
+                <td></td>
+                <td>コメント数：<%= @book.book_comments.count %></td>
               </tr>
               </tbody>
             <% end %>
