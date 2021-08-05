@@ -42,61 +42,17 @@
           <th scope="col"><%= link_to "Destroy", book_path(@book.id), method: :delete, class:"btn btn-sm btn-danger" %></th>
           <% end %>
           <th></th>
-          <th scope="col"><% "#{@book.book_comments.count} コメント" %></th>
+          <th scope="col">コメント件数：<%= @book.book_comments.count %></th>
            
         </tr>
-      <!--</thead>-->
-      <!--</tbody>-->
     </tbody>
-    
-    <!--コメント欄、コメント入力欄ここから-->
-    <tbody>
-        <tr>
-         
-         <!--読み込むeachの文-->
-          <th scope="col">
-           <!--ユーザーページに飛ばす画像と名前のところ両方とも-->
-           <p>
-            <%= link_to user_path(@user.id) do %>
-             <%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg", size: "40x40" %>
-            <% end %>
-           </p>
-           <!--ユーザーページに飛ばす画像と名前のところ両方とも-->
-           <p><%= link_to @user.name,user_path(@user.id) %></p>
-          </th>
-          <!--本の詳細画面に飛ばす-->
-          <!--<th scope="col"><%#= link_to @book.title,book_path(@book.id)%></th>-->
-          <!--<th scope="col"><%#= @book.body %></th>-->
-          
-          <!--この本に対して入力されたコメントを抽出することを繰り返す-->
-          <th scope="col"><% @book.book_comments do|book_comment| %></th>
-          
-            <% if current_user.id == book_comments_id %>
-            <!--<th scope="col"><%#= link_to "Edit",edit_book_path(@book.id), class:"btn btn-sm btn-success" %></th>-->
-             <th scope="col">
-              <%= render 'book_comments/book_comments_destroy', book_comment_destroy: @book_comments_destroy %>
-             </th>
-             <th></th>
-            <% end %>
-           <% end %>
-        </tr>
-        <!--読み込むeachの文のend-->
-        
-        
-        <!--bookに対するコメント-->
-        <tr>
-         <th scope="col">
-          <%= render 'book_comments/book_comments_new', book_comment: @book_comments_new %>
-         </th> 
-        </tr>
-        
-      <!--</thead>-->
-      <!--</tbody>-->
-    </tbody>
-    <!--コメント欄、コメント入力欄ここまで-->
-    
    </table> 
  <!--Book detailの部分　ここまで-->
+ 
+ 
+ <!--コメント欄、コメント入力欄ここから-->
+    <%= render 'books/book_comment', book: @book, book_comment: @book_comment %>
+ <!--コメント欄、コメント入力欄ここまで-->
  
  </div>
  
@@ -104,3 +60,5 @@
  
  </div>
 </div>
+
+

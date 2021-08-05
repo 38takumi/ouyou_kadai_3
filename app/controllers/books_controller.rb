@@ -13,9 +13,7 @@ class BooksController < ApplicationController
     # @bookのユーザー
      @user = @book.user
      @book_new = Book.new
-     @book_comments_destroy = @book.book_comments
-     @book_comments_new = @book.book_comments.new
-     
+     @book_comment = BookComment.new
   end
 
   # def new
@@ -75,5 +73,10 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+  
+  
+   def book_comments_params
+    params.require(:book_comments).permit(:user_comment)
+   end
   
 end

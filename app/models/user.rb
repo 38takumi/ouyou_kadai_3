@@ -2,7 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :validatable
   has_many :books, dependent: :destroy
-    has_many :book_comments, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 
   validates :name, presence: true
   validates :name, uniqueness: true

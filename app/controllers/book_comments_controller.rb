@@ -1,38 +1,46 @@
 class BookCommentsController < ApplicationController
-  before_action :correct_book_comments,only: [:destroy]
+  # before_action :correct_book_comment,only: [:destroy]
+  before_action :authenticate_user!
+
+  
   
   def create
+     @book = Book.find(params[:book_id])
     # 空のコメントを作る
-    @book_comments_new = book_comments.new(book_comments_params)
-    # コメントのidと現在のユーザーidが同じかどうか
-    @book_comemnts_id = current_user.id
-    # コメントする本のidとコメントidは同じかどうか
-    @book_comments_new.user_id = @book_comments_id
+    @book_comment = current_user.book_comments.new(book_comment_params)
+    @book_comment.book_id = @book.id
+    # ユーザーのidを指定する
+    @book_comment.user_id = current_user.id    
+  
     # 同じならsave
-    @book_comments_new.save
-    redirect_to book_path(@book_comments_new.user_id)
+    if @book_comment.save
+      redirect_to book_path(@book.id)
+    else
+      render 'books/show'
+    end
+    
   end
   
   def destroy
-    # book_commentsを特定する
-    @book_comments_destroy = Book_comments.find(book_comments_params)
-    @book_comments_destroy.destroy
-    # flash[:notice] = "Book was successfully destroyed."
-    redirect_to book_path(book_comments_destory.book)
+    # book_commentを特定する
+    @book = Book.find(params[:book_id])
+  	book_comment = @book.book_comments.find(params[:id])
+    book_comment.destroy
+    redirect_to book_path(@book.id)
+    # redirect_to request.referer
   end
   
-  def correct_book_comments
-    @book_comments_destroy = Book_comments.find(params[:id])
-    unless @book_comments_destroy.user.id == current_user.id
-      # どこに飛ばせばいいかわからない
-      # redirect_to books_path
-      redirect_to book_path(book_comments_destory.book)
-    end
-  end
+  # def correct_book_comment
+  #   @book_comment = Book_comments.find(params[:id])
+  #   unless @book_comment.user.id == current_user.id
+  #     # どこに飛ばせばいいかわからない
+  #     # redirect_to books_path
+  #     redirect_to book_path(book_comment.book)
+  #   end
+  # end
     
   private
-  def book_comments_params
-    params.require(:book_comments).permit(:user_comment, :book_comments_id)
+  def book_comment_params
+    params.require(:book_comment).permit(:user_comment)
   end  
-    
 end
