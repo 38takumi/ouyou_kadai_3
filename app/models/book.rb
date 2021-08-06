@@ -6,6 +6,7 @@ class Book < ApplicationRecord
     favorites.where(user_id: user.id).exists?
   end
  
+ 
  validates :title, presence: true
 
  validates :body, presence: true

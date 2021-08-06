@@ -49,13 +49,19 @@
            <% if @book.favorited_by?(current_user) %>
              <p>
                <%= link_to book_favorite_path(@book), method: :delete do %>
-                ♥<%= @book.favorites.count %> いいね
+                 <i class="fas fa-heart">
+                   <%= @book.favorites.count %> いいね
+                 </i>
+                <!--♥<%#= @book.favorites.count %> いいね-->
                <% end %>
              </p>
            <% else %>
              <p>
                <%= link_to book_favorites_path(@book), method: :post do %>
-                 ♡<%= @book.favorites.count %> いいね
+                <i class="far fa-heart">
+                  <%= @book.favorites.count %> いいね
+                </i>
+                 <!--♡<%#= @book.favorites.count %> いいね-->
                <% end %>
              </p>
            <% end %>
