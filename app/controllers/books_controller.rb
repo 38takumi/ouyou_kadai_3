@@ -6,6 +6,7 @@ class BooksController < ApplicationController
     @user = current_user
     # @user_data = current_user
     @book = Book.new
+    # @book_favorite = Book.find(params[:id])
   end
 
   def show
