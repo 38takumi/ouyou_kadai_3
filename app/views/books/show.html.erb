@@ -46,7 +46,8 @@
           
           <!--いいね機能-->
           <th>
-           <% if @book.favorited_by?(current_user) %>
+           <% if current_user.favorited_by?(user) %>
+           <%# if Favorite.find_by(user_id: current_user.id, book_id: book.id) %>
              <p>
                <%= link_to book_favorite_path(@book), method: :delete do %>
                  <i class="fas fa-heart">
