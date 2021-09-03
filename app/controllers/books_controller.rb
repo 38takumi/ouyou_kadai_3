@@ -13,6 +13,7 @@ class BooksController < ApplicationController
      @book = Book.find(params[:id])
     # @bookのユーザー
      @user = @book.user
+    # bookモデルの新規インスタンスの作成
      @book_new = Book.new
      @book_comment = BookComment.new
   end
@@ -75,9 +76,7 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
   
-  
    def book_comments_params
     params.require(:book_comments).permit(:user_comment)
    end
-  
 end
