@@ -4,5 +4,4 @@ class BookComment < ApplicationRecord
     
  
   validates :user_comment, presence: true
-  
 end
