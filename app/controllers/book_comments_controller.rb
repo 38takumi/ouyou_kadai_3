@@ -10,7 +10,6 @@ class BookCommentsController < ApplicationController
     @book_comment.book_id = @book.id
     # ユーザーのidを指定する
     @book_comment.user_id = current_user.id    
-  
     # 同じならsave
     if @book_comment.save
       redirect_to book_path(@book.id)
@@ -18,7 +17,6 @@ class BookCommentsController < ApplicationController
       # @user = User.find(params[:id])
       render 'books/show'
     end
-    
   end
   
   def destroy
