@@ -11,8 +11,5 @@ class User < ApplicationRecord
 
   validates :introduction, length: { maximum: 50 }
 
-#プロフィール画像用 deviseに入ってるかも
   attachment :profile_image
-
-
 end
