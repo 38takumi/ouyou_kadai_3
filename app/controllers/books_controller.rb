@@ -10,12 +10,12 @@ class BooksController < ApplicationController
   end
 
   def show
-     @book = Book.find(params[:id])
+    @book = Book.find(params[:id])
     # @bookのユーザー
-     @user = @book.user
+    @user = @book.user
     # bookモデルの新規インスタンスの作成
-     @book_new = Book.new
-     @book_comment = BookComment.new
+    @book_new = Book.new
+    @book_comment = BookComment.new
   end
 
   # def new
@@ -24,14 +24,13 @@ class BooksController < ApplicationController
   # end
   
   def create
-     # １. データを新規登録するためのインスタンス作成
+    # １. データを新規登録するためのインスタンス作成
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    # binding.pry
-     # ２. データをデータベースに保存するためのsaveメソッド実行
+    # ２. データをデータベースに保存するためのsaveメソッド実行
     if @book.save
       flash[:notice] = "Book was successfully created."
-       # ３. ブック詳細画面へリダイレクト
+      # ３. ブック詳細画面へリダイレクト
       redirect_to book_path(@book.id)
     else
       @books = Book.all
@@ -75,7 +74,7 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
   
-   def book_comments_params
+  def book_comments_params
     params.require(:book_comments).permit(:user_comment)
-   end
+  end
 end

@@ -2,9 +2,8 @@ class BookCommentsController < ApplicationController
   # before_action :correct_book_comment,only: [:destroy]
   before_action :authenticate_user!
 
-  
   def create
-     @book = Book.find(params[:book_id])
+    @book = Book.find(params[:book_id])
     # 空のコメントを作る
     @book_comment = BookComment.new(book_comment_params)
     @book_comment.book_id = @book.id
